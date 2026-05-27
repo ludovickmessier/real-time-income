@@ -32,9 +32,13 @@
             });
         })
 
-        const text = `Notification de l'application`;
-        const notification = new Notification("Une notification", {body: text });
-
+       new Notification("Title", {
+  body: "Message",
+  actions: [
+    { action: "done", title: "Done" },
+    { action: "later", title: "Later" }
+  ]
+});
 
     </script>
 </body>
