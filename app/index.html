@@ -25,15 +25,47 @@
         // });
 
 
-        document.getElementById("notifications").addEventListener("click", function (e) {
-            Notification.requestPermission().then((result) => {
-                console.log(result);
+        // document.getElementById("notifications").addEventListener("click", function (e) {
+        //     Notification.requestPermission().then((result) => {
+        //         console.log(result);
                 
-            });
-        })
+        //     });
+        // })
 
-        const text = `HEY! Your task is now overdue.`;
-        const notification = new Notification("To do list", { body: text });
+        // const text = `HEY! Your task is now overdue.`;
+        // const notification = new Notification("To do list", { body: text });
+
+        function startSpeedTracking() {
+    if (!navigator.geolocation) {
+        document.getElementById("speedDisplay").textContent = "Geolocation not supported";
+        return;
+    }
+
+    navigator.geolocation.watchPosition(
+        (position) => {
+            let speedMps = position.coords.speed;
+
+            // Some devices return null when speed is unavailable
+            if (speedMps === null) speedMps = 0;
+
+            const speedKmh = speedMps * 3.6;
+
+            document.getElementById("speedDisplay").textContent =
+                speedKmh.toFixed(1) + " km/h";
+        },
+        (error) => {
+            document.getElementById("speedDisplay").textContent =
+                "Location error: " + error.message;
+        },
+        {
+            enableHighAccuracy: true,
+            maximumAge: 1000
+        }
+    );
+}
+
+// start it
+startSpeedTracking();
 
     </script>
 </body>
