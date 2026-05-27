@@ -26,12 +26,14 @@
 
 
         document.getElementById("notifications").addEventListener("click", function (e) {
-            navigator.share({
-                title: "My App", text:
-                    "Check this out",
-                url: "https://example.com"});
+            Notification.requestPermission().then((result) => {
+                console.log(result);
+                
+            });
         })
 
+        const text = `HEY! Your task is now overdue.`;
+        const notification = new Notification("To do list", { body: text });
 
     </script>
 </body>
