@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>n</title>
+    <ios-app></ios-app>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#000000">
+
+</head>
+
+<body>
+
+    <button id="notifications">Notification</button>
+    <div id="di"></div>
+    <script src="ios-app-kit/module.js" type="module"></script>
+
+    <script>
+
+        // document.addEventListener("pointermove", e => {
+        //     document.getElementById("di").textContent =
+        //         "Pressure: " + e.pressure;
+        // });
+
+
+        document.getElementById("notifications").addEventListener("click", function (e) {
+            navigator.share({
+                title: "My App", text:
+                    "Check this out",
+                url: "https://example.com"});
+        })
+
+
+    </script>
+</body>
+
+</html>
